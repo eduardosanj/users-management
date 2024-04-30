@@ -1,7 +1,7 @@
 # users-management
 
 
-** CRUD for users management with FastAPI + MongoDB **
+* CRUD for users management with FastAPI + MongoDB
 
 From the root directory run the following commands
 
@@ -14,3 +14,10 @@ docker-compose up -d
 ```
 
 
+- Test page for check API
+  
+http://localhost:8000/
+
+- API DOC
+
+http://localhosts:8000/docs
