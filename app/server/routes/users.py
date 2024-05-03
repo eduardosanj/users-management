@@ -23,7 +23,7 @@ async def get_users():
     users = await retrieve_users()
     if users:
         return ResponseModel(users, "Get users data OK")
-    return ResponseModel(users, "Get users data empty")
+    return ResponseModel(users, "Users data empty")
 
 @router.get("/{id}", response_description="User data By ID OK")
 async def get_user_data(id):
@@ -69,3 +69,14 @@ async def update_user_data(id: str, req: UpdateUserModel = Body(...)):
 #         404,
 #         "Error in Update",
 #     )
+
+@router.delete("/{id}", response_description="User data deleted")
+async def delete_user_data(id: str):
+    deleted_user = await delete_user(id)
+    if deleted_user:
+        return ResponseModel(
+            "User ID: {} deleted".format(id), "User deleted successfully"
+        )
+    return ErrorResponseModel(
+        "ERROR", 404, "User with id {0} not exist".format(id)
+    )
