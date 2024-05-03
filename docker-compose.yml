@@ -2,22 +2,23 @@ version: '3.8'
 
 services:
   api:
-    build: app
+    build: ./app
     volumes:
       - .:/code
     ports:
       - '8000:8000'
     environment:
-      - DB_URL=mongodb://db/usersDB
+      - DB_URL=mongodb://mongodb/usersDB
     depends_on:
-      - db
-  db:
+      - mongodb
+  mongodb:
     image: mongo
+    container_name: mongodb
     ports:
       - 27017:27017
     volumes:
-      - taskdb:/data/db
+      - mongodb_data:/data/db
 
 
 volumes:
-    taskdb:
+    mongodb_data:

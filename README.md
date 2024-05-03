@@ -6,7 +6,7 @@
 From the root directory run the following commands
 
 ```bash
- docker-compose build
+docker-compose build
  ```
  
 ```bash
