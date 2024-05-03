@@ -13,7 +13,7 @@ user_collection = database.get_collection("users_collections")
 
 def user_helper(user) -> dict:
     return {
-        # "id": str(user["_id"]),
+        "id": str(user["_id"]),
         "name": user["name"],
         "surname": user["surname"],
         "uid": str(user["uid"]),

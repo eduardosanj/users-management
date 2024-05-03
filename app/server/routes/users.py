@@ -22,8 +22,15 @@ router = APIRouter()
 async def get_users():
     users = await retrieve_users()
     if users:
-        return ResponseModel(users, "Users get data OK")
-    return ResponseModel(users, "Users get data empty")
+        return ResponseModel(users, "Get users data OK")
+    return ResponseModel(users, "Get users data empty")
+
+@router.get("/{id}", response_description="User data By ID OK")
+async def get_user_data(id):
+    user = await retrieve_user(id)
+    if user:
+        return ResponseModel(user, "Get User data OK")
+    return ErrorResponseModel("Error", 404, "The user not exist")
 
 @router.post("/", response_description="User data added to the Data Base")
 async def add_user_data(user: SchemaDeUser = Body(...)):
