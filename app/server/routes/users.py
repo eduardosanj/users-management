@@ -37,3 +37,35 @@ async def add_user_data(user: SchemaDeUser = Body(...)):
     user = jsonable_encoder(user)
     new_user= await add_user(user)
     return ResponseModel(new_user, "User added.")
+
+
+#Version 1 -> app/server/user.py
+@router.put("/{id}")
+async def update_user_data(id: str, req: UpdateUserModel = Body(...)):
+    req = {k: v for k, v in req.dict().items() if v is not None}
+    updated_user = await update_user(id, req)
+    if updated_user:
+        return ResponseModel(
+            "Updated ok - ID: {} ".format(id), "User Updated correctly"
+        )
+    return ErrorResponseModel(
+        "ERROR",
+        404,
+        "Error in Update",
+    )
+
+# #Version 2 -> app/server/models/user.py
+# @router.put("/{id}")
+# async def update_user_data(id: str, req: SchemaDeUser.as_optional() = Body(...)):
+#     req = {k: v for k, v in req.dict().items() if v is not None}
+#     updated_user = await update_user(id, req)
+#     if updated_user:
+#         return ResponseModel(
+#             "Updated ok - ID: {} ".format(id),
+#             "User Updated correctly",
+#         )
+#     return ErrorResponseModel(
+#         "ERROR",
+#         404,
+#         "Error in Update",
+#     )
