@@ -18,6 +18,13 @@ from server.models.user import (
 router = APIRouter()
 
 
+@router.get("/", response_description="Users retrieved")
+async def get_users():
+    users = await retrieve_users()
+    if users:
+        return ResponseModel(users, "Users get data OK")
+    return ResponseModel(users, "Users get data empty")
+
 @router.post("/", response_description="User data added to the Data Base")
 async def add_user_data(user: SchemaDeUser = Body(...)):
     user = jsonable_encoder(user)
