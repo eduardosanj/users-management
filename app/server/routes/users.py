@@ -1,5 +1,14 @@
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
+from flask import jsonify
+
+from server.jwt.token_manager import (
+    generate_token, validate_token    
+)
+
+from server.models.token import (
+    User, Token
+)
 
 from server.database import (
     add_user,
@@ -16,6 +25,17 @@ from server.models.user import (
 )
 
 router = APIRouter()
+
+@router.post('/login', response_model=Token)
+async def login(user: User):
+    if user.username == 'test' and user.password == 'test':
+        # Generar un token JWT con los datos del usuario
+        data = jsonify({'username': user.username, 'password' : user.password})
+        token = generate_token(data)
+        validate_token(token)
+        return jsonify({'token': token}), 200
+    else:
+        return jsonify({'mensaje': 'Invalid login'}), 401
 
 
 @router.get("/", response_description="Users retrieved")
@@ -80,3 +100,5 @@ async def delete_user_data(id: str):
     return ErrorResponseModel(
         "ERROR", 404, "User with id {0} not exist".format(id)
     )
+
+
