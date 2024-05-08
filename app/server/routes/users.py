@@ -7,7 +7,10 @@ from server.jwt.token_manager import (
 )
 
 from server.models.token import (
-    User, Token
+    User, 
+    Token,
+    ResponseToken,
+    ErrorResponseToken
 )
 
 from server.database import (
@@ -26,16 +29,17 @@ from server.models.user import (
 
 router = APIRouter()
 
-@router.post('/login', response_model=Token)
+#@router.post('/login', response_model=Token)
+@router.post('/login')
 async def login(user: User):
     if user.username == 'test' and user.password == 'test':
         # Generar un token JWT con los datos del usuario
-        data = jsonify({'username': user.username, 'password' : user.password})
+        data = {'username': user.username, 'password' : user.password}
         token = generate_token(data)
         validate_token(token)
-        return jsonify({'token': token}), 200
+        return ResponseToken(token, "token generated and validated")
     else:
-        return jsonify({'mensaje': 'Invalid login'}), 401
+        return ErrorResponseToken("ERROR", 404, 'Invalid login')
 
 
 @router.get("/", response_description="Users retrieved")
