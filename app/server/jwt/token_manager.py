@@ -6,13 +6,6 @@ SECRET_KEY = 'dnVvODY4Yzc2bzhzNzZqOG83czY4b2Nq'
 
 # Función para generar un token JWT
 def generate_token(payload: dict):
-    # Configurar la información del token (puedes incluir cualquier dato relevante)
-    # payload = {
-    #     'username': data.username,
-    #     'password': data.password,
-    #     'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)  # Expira en 30 minutos
-    # }
-    
     # Generar el token JWT firmado con la clave secreta
     token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
     return token
