@@ -1,7 +1,8 @@
 from ports.in_port.user_write_in import UserWriteInPort
 from ports.out_port.user_write_out import UserWriteOutPort
 
-class UserWriteUseCase(UserWriteInPort):    
+
+class UserWriteUseCase(UserWriteInPort):
     def __init__(self, user_write_out_port: UserWriteOutPort):
         self.user_write_out_port = user_write_out_port
 

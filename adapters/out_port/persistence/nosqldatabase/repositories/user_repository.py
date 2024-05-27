@@ -2,6 +2,7 @@ from bson.objectid import ObjectId
 from adapters.out_port.persistence.nosqldatabase.infrastructure.db.database import user_collection
 from adapters.out_port.persistence.nosqldatabase.repositories.user_helper import user_helper
 
+
 class UserRepository:
     def __init__(self):
         self.collection = user_collection
@@ -25,7 +26,6 @@ class UserRepository:
         new_user = await self.collection.find_one({"_id": user.inserted_id})
         return user_helper(new_user)
 
-        
     # Update user by ID
     async def update(self, id: str, data: dict):
         # Devuelve falso si el cuerpo del request está vacio
@@ -39,7 +39,7 @@ class UserRepository:
             if updated_user:
                 return True
             return False
-        
+
     # Delete user
     async def delete_by_id(self, id: str):
         user = await self.collection.find_one({"_id": ObjectId(id)})

@@ -1,7 +1,8 @@
 from ports.in_port.user_read_in import UserReadInPort
 from ports.out_port.user_read_out import UserReadOutPort
 
-class UserReadUseCase(UserReadInPort):    
+
+class UserReadUseCase(UserReadInPort):
     def __init__(self, user_read_out_port: UserReadOutPort):
         self.user_read_out_port = user_read_out_port
 

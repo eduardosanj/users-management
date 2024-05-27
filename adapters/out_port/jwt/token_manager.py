@@ -1,13 +1,16 @@
 import jwt
 import datetime
+
 # Clave secreta para firmar el token (debería ser segura y aleatoria en un entorno real)
 SECRET_KEY = 'dnVvODY4Yzc2bzhzNzZqOG83czY4b2Nq'
+
 
 # Función para generar un token JWT
 def generate_token(payload: dict):
     # Generar el token JWT firmado con la clave secreta
     token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
     return token
+
 
 # Función para verificar un token JWT
 def validate_token(token):
@@ -19,6 +22,7 @@ def validate_token(token):
         return 'The token has expired'  # Manejo de token expirado
     except jwt.InvalidTokenError:
         return 'Invalid token'  # Manejo de token inválido
+
 
 # # Ejemplo de uso:
 payload = {'username': "test", 'password': "test", 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}

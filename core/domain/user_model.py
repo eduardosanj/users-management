@@ -25,6 +25,7 @@ class UserModel(BaseModel):
             }
         }
 
+
 class UpdateUserModel(BaseModel):
     name: Optional[constr(strict=True)]
     surname: Optional[constr(strict=True)]

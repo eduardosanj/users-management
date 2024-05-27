@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 # Puerto de entrada
 class UserReadOutPort():
     @abstractmethod
