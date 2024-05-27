@@ -13,6 +13,12 @@ docker-compose build
 docker-compose up -d
 ```
 
+* This project is based in Hexagonal Architecture
+
+![Hexagonal Architecture](hex.png "Hexagonal Architecture").
+
+
+
 
 - Test page for check API
   
