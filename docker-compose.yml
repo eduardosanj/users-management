@@ -2,7 +2,10 @@ version: '3.8'
 
 services:
   api:
-    build: ./app
+    build:
+      context: .
+      dockerfile: config/docker/Dockerfile
+    container_name: users_management
     volumes:
       - .:/code
     ports:
@@ -11,6 +14,7 @@ services:
       - DB_URL=mongodb://mongodb/usersDB
     depends_on:
       - mongodb
+      
   mongodb:
     image: mongo
     container_name: mongodb

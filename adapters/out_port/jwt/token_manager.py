@@ -1,6 +1,5 @@
 import jwt
 import datetime
-from server.models.token import User
 # Clave secreta para firmar el token (debería ser segura y aleatoria en un entorno real)
 SECRET_KEY = 'dnVvODY4Yzc2bzhzNzZqOG83czY4b2Nq'
 

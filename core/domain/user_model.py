@@ -3,10 +3,11 @@ from typing import Optional
 from pydantic import BaseModel, EmailStr, Field, constr, conint, create_model
 
 
-class SchemaDeUser(BaseModel):
+class UserModel(BaseModel):
     name: constr(strict=True) = Field(...)
     surname: constr(strict=True) = Field(...)
-    uid: conint(strict=True, gt=0) = Field(...)
+    username: constr(strict=True) = Field(...)
+    password: constr(strict=True) = Field(...)
     email: EmailStr = Field(...)
     phone: constr(strict=True) = Field(None)
     user_type: bool = Field(...)
@@ -16,7 +17,8 @@ class SchemaDeUser(BaseModel):
             "sample": {
                 "name": "Juana",
                 "surname": "Pilo",
-                "uid": 27358783,
+                "username": "juanpilo",
+                "password": "test",
                 "email": "jpilo@x.ar",
                 "phone": "+54 9 456789",
                 "user_type": True,
@@ -26,7 +28,8 @@ class SchemaDeUser(BaseModel):
 class UpdateUserModel(BaseModel):
     name: Optional[constr(strict=True)]
     surname: Optional[constr(strict=True)]
-    uid: Optional[conint(strict=True, gt=0)]
+    username: Optional[constr(strict=True)]
+    password: Optional[constr(strict=True)]
     email: Optional[EmailStr]
     phone: Optional[constr(strict=True)]
     user_type: Optional[bool]
@@ -36,7 +39,8 @@ class UpdateUserModel(BaseModel):
             "sample": {
                 "name": "Juana",
                 "surname": "Pilo",
-                "uid": 27358783,
+                "username": "juanpilo",
+                "password": "test",
                 "email": "jpilo@x.ar",
                 "phone": "+54 9 456789",
                 "user_type": True,

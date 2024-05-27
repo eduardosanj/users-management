@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from server.routes.users import router as UserRouter
+from adapters.in_port.api.rest.user_controller import router as UserRouter
 
 app = FastAPI()
 
