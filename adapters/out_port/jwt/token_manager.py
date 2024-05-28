@@ -1,8 +1,10 @@
 import jwt
 import datetime
+from adapters.out_port.jwt.jwt_generate import generate_jwt_secret_key
 
 # Clave secreta para firmar el token (debería ser segura y aleatoria en un entorno real)
-SECRET_KEY = 'dnVvODY4Yzc2bzhzNzZqOG83czY4b2Nq'
+#SECRET_KEY = 'dnVvODY4Yzc2bzhzNzZqOG83czY4b2Nq'
+SECRET_KEY = generate_jwt_secret_key(32)
 
 
 # Función para generar un token JWT

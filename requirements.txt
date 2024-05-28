@@ -1,6 +1,6 @@
 fastapi == 0.109.1
 uvicorn == 0.16.0
-pydantic[email]
+pydantic[email]~=1.10.15
 motor == 2.5.1
-PyJWT
-flask
+PyJWT~=2.8.0
+pymongo~=3.13.0

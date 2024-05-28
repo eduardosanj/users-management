@@ -12,7 +12,7 @@ class UserModel(BaseModel):
     phone: constr(strict=True) = Field(None)
     user_type: bool = Field(...)
 
-    class config:
+    class Config:
         schema_extra = {
             "sample": {
                 "name": "Juana",

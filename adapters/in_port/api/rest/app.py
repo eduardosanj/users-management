@@ -4,7 +4,7 @@ from adapters.in_port.api.rest.user_controller import router as UserRouter
 
 app = FastAPI()
 
-app.include_router(UserRouter, tags=["User"], prefix="/user")
+app.include_router(UserRouter, tags=["User"], prefix="/users")
 
 
 @app.get("/", tags=['root'])
